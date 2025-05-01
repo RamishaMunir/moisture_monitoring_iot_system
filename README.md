@@ -43,7 +43,12 @@ An end-to-end IoT system for **real-time soil moisture monitoring**, built using
 - Dashboard was connected to **InfluxDB 1.8** (via Docker).  
 - Real-time graphs plot soil moisture.  
 - Alert rule: Sends email if moisture level is too low.  
-- Adjust threshold in Grafana Alert settings.  
+- Adjust threshold in Grafana Alert settings.
+
+## 📺 Demo
+
+[![Watch Demo](https://img.youtube.com/vi/AoXXewnahw0/0.jpg)](https://youtube.com/shorts/AoXXewnahw0)
+
 
 ## 📚 Course Context
 
