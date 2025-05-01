@@ -1,34 +1,52 @@
-# IoT Moisture Monitoring & Alert System 🌱📡
+# 🌱 IoT Soil Moisture Monitoring & Alert System
 
-This project is an IoT-based system that monitors soil moisture levels using a sensor connected to an Arduino. The data is visualized in real-time on Grafana and is used to trigger automatic email alerts when the moisture level drops below a defined threshold.
+An end-to-end IoT system for **real-time soil moisture monitoring**, built using Arduino, Python, InfluxDB, and Grafana. It provides **live dashboards** and **email alerts** when soil moisture drops below a specified threshold — ideal for smart farming and gardening applications.
 
 ## 🔧 Components Used
 
-- Arduino Uno
-- Soil moisture sensor
-- Wi-Fi module / Serial connection to server (based on your setup)
-- Grafana (data visualization)
-- InfluxDB (or similar time-series DB, if used)
-- Email alerting system (SMTP or Grafana alert rule)
+- **Arduino Uno** with soil moisture sensor  
+- **pymata4** library for Arduino-Python communication  
+- **InfluxDB** (via Docker) to store time-series data  
+- **Grafana** for live dashboard and alert configuration  
+- **Python scripts** to collect and forward sensor data  
+- **SMTP (Grafana alert rule)** for automated email notifications  
 
-## 🧠 Features
+## 🧠 Key Features
 
-- Real-time moisture level monitoring
-- Live dashboard using Grafana
-- Alert system that emails the user when moisture drops too low
-- Queries for historical and real-time analysis
-- Scalable for agricultural or gardening applications
+- 📊 **Real-Time Monitoring**: Sensor values are collected via Arduino and sent to InfluxDB every second.  
+- 📈 **Grafana Dashboard**: Live visualization of moisture trends over time.  
+- 📬 **Email Alerts**: Configured in Grafana to trigger alerts when values fall below a threshold.  
+- 🗃️ **MySQL Support**: Optional integration to store sensor readings in a relational DB.  
+- 🖥️ **GUI Console**: A Tkinter-based interface to visualize sensor data and water need status.  
 
-## 🚀 Project Workflow
+## 🚀 Workflow
 
-1. Arduino reads soil moisture data.
-2. Data is sent to a backend (e.g., via serial or MQTT).
-3. Data is stored and processed (e.g., in InfluxDB or another backend).
-4. Grafana visualizes the data and triggers alerts.
-5. Email sent if moisture is below the threshold.
+1. **Arduino reads** moisture values through analog pin.  
+2. **Python (pymata4)** reads and processes values.  
+3. **Data is pushed** to **InfluxDB** using `influxdb_client`.  
+4. **Grafana** connects to InfluxDB and displays live metrics.  
+5. **Alert Rule** in Grafana sends an email if moisture < defined threshold.  
+6. **Optional**: Data is also saved into **MySQL** (`moisture_level_values` table).  
+
+## 🗂️ Repository Structure
+
+├── integrated_final_project.py # Main InfluxDB integration + sensor loop
+├── soil.py # Alternative: Save to MySQL DB
+├── database.py # SQLAlchemy-based DB handler
+├── gui_consol.py # Tkinter GUI for local visualization
+├── influxdb_setup.py # Sample InfluxDB write script
+├── docker_compose.yml # Deploys InfluxDB container
+
+
+## 🖼️ Grafana Dashboard & Alerts
+
+- Dashboard was connected to **InfluxDB 1.8** (via Docker).  
+- Real-time graphs plot soil moisture.  
+- Alert rule: Sends email if moisture level is too low.  
+- Adjust threshold in Grafana Alert settings.  
 
 ## 📚 Course Context
 
-This project was developed as part of an IoT course to apply real-world sensing, data processing and alerting workflows in smart agriculture systems.
+This project was developed as part of a university-level **IoT course**, focused on applying data acquisition, cloud monitoring and real-time alerting in smart agriculture.
 
-📅 Completed: [Decemeber, 2021]
+📅 **Completed:** *December, 2021*  
